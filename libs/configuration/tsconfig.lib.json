@@ -2,15 +2,19 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "@common/configuration/*": ["../../libs/configuration/src/lib/*"]
+      "@common/configuration/*": ["./src/libs/*"]
     },
     "outDir": "../../dist/out-tsc",
-    "module": "node16",
+    "declaration": true,
     "types": ["node"],
+    "target": "es2021",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "target": "es2021",
-    "moduleResolution": "node16"
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src/**/*.ts"],
   "exclude": [
