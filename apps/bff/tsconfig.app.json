@@ -1,9 +1,6 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "paths": {
-      "@common/configuration/*": ["../../libs/configuration/src/lib/*"]
-    },
     "outDir": "../../dist/out-tsc",
     "module": "node16",
     "types": ["node"],
