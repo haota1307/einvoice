@@ -2,7 +2,13 @@
   "name": "@einvoice/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "prepare": "husky",
+    "nx:reset": "nx reset",
+    "nx:run-many": "nx run-many",
+    "dev": "npm run nx:reset && npm run nx:run-many -- -t serve",
+    "dev-lite": "npm run dev -- --projects=bff"
+  },
   "private": true,
   "dependencies": {
     "@nestjs/common": "^11.0.0",
