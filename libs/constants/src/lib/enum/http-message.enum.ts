@@ -10,4 +10,5 @@ export enum HTTP_MESSAGE {
   CREATED = 'Created Successfully',
   DELETED = 'Deleted Successfully',
   VERIFIED = 'Verified Successfully',
+  ECONNREFUSED = 'Connection Refused',
 }
