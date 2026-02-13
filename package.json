@@ -6,8 +6,8 @@
     "prepare": "husky",
     "nx:reset": "nx reset",
     "nx:run-many": "nx run-many",
-    "dev": "npm run nx:reset && npm run nx:run-many -- -t serve",
-    "dev-lite": "npm run dev -- --projects=bff"
+    "dev": "pnpm nx:reset && pnpm nx:run-many -t serve",
+    "dev-lite": "pnpm dev --projects=bff"
   },
   "private": true,
   "dependencies": {
@@ -16,9 +16,11 @@
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",
     "@nestjs/swagger": "^11.2.6",
+    "@types/express": "^5.0.6",
     "axios": "^1.6.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.3",
+    "express": "^5.2.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0"
   },
