@@ -1,5 +1,10 @@
 import { ConfigModule } from '@nestjs/config';
-import { MiddlewareConsumer, Module } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
@@ -14,10 +19,15 @@ import { LoggerMiddleware } from '@common/middlewares/logger.middleware';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
+export class AppModule implements NestModule {
   static CONFIGURATION: TConfiguration = CONFIGURATION;
 
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes('*');
+    consumer
+      .apply(LoggerMiddleware)
+      .forRoutes(
+        { path: '', method: RequestMethod.ALL },
+        { path: '*path', method: RequestMethod.ALL },
+      );
   }
 }
