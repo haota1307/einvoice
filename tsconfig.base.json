@@ -14,6 +14,7 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "strictPropertyInitialization": false,
     "paths": {
       "@common/configuration/*": ["libs/configuration/src/lib/*"],
       "@common/middlewares/*": ["libs/middlewares/src/lib/*"],
