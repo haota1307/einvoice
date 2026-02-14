@@ -3,7 +3,8 @@ import { Controller, Get, UseInterceptors } from '@nestjs/common';
 
 import { AppService } from './app.service';
 import { TcpLoggingInterceptor } from '@common/interceptors/tcp-logging.interceptor';
-
+import { Request } from '@common/interfaces/tcp/common/request.interface';
+import { Response } from '@common/interfaces/tcp/common/response.interface';
 @Controller()
 @UseInterceptors(TcpLoggingInterceptor)
 export class AppController {
@@ -15,7 +16,12 @@ export class AppController {
   }
 
   @MessagePattern('get_invoices')
-  getInvoice(invoiceId: number) {
-    return `Invoice data for invoice #${invoiceId}`;
+  getInvoice({
+    data: invoiceId,
+    processId,
+  }: Request<number>): Response<string> {
+    return Response.success<string>(
+      `Invoice with ID ${invoiceId} retrieved successfully for process ${processId}`,
+    );
   }
 }

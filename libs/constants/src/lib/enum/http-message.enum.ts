@@ -1,4 +1,5 @@
 export enum HTTP_MESSAGE {
+  OK = 'OK',
   SUCCESS = 'Success',
   FAILED = 'Failed',
   NOT_FOUND = 'Not Found',
