@@ -2,9 +2,9 @@ import { map } from 'rxjs';
 import { Controller, Get, Inject } from '@nestjs/common';
 
 import { AppService } from './app.service';
+import { ProcessId } from '@common/decorators/process-id.decorator';
 import { ResponseDto } from '@common/interfaces/gateway/response.interface';
 import { TcpClient } from '@common/interfaces/tcp/common/tcp-client.interface';
-
 @Controller()
 export class AppController {
   constructor(
@@ -19,10 +19,10 @@ export class AppController {
   }
 
   @Get('invoices')
-  async getInvoices() {
+  async getInvoices(@ProcessId() processId: string) {
     const result = this.invoiceClient
       .send<string, number>('get_invoices', {
-        processId: '1',
+        processId,
         data: 10,
       })
       .pipe(
