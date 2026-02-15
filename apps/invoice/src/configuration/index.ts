@@ -4,6 +4,8 @@ import { Type } from 'class-transformer';
 import { BaseConfiguration } from '@common/configuration/base.config';
 import { AppConfiguration } from '@common/configuration/app.config';
 import { TcpConfiguration } from '@common/configuration/tcp.config';
+import { MongoConfig } from '@common/configuration/mongo.config';
+
 class Configuration extends BaseConfiguration {
   @ValidateNested()
   @Type(() => AppConfiguration)
@@ -13,12 +15,12 @@ class Configuration extends BaseConfiguration {
   @Type(() => TcpConfiguration)
   TCP_SERV = new TcpConfiguration();
 
-  constructor() {
-    super();
-    this.validate();
-    this.APP_CONFIG.validate();
-  }
+  @ValidateNested()
+  @Type(() => MongoConfig)
+  MONGO_CONFIG = new MongoConfig();
 }
 
 export const CONFIGURATION = new Configuration();
 export type TConfiguration = typeof CONFIGURATION;
+
+CONFIGURATION.validate();

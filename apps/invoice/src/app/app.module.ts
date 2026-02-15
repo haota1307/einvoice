@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { MongooseModule } from '@nestjs/mongoose';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CONFIGURATION, TConfiguration } from '../configuration';
+import { MongoProvider } from '@common/configuration/mongo.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, load: [() => CONFIGURATION] }),
-    MongooseModule.forRoot('mongodb://root:password@localhost:27017/'),
+    MongoProvider,
   ],
   controllers: [AppController],
   providers: [AppService],
