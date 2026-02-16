@@ -31,7 +31,8 @@ export class MongoConfig {
       process.env['MONGODB_URL'] ||
       'mongodb://root:password@localhost:27017/';
 
-    this.DB_NAME = data?.DB_NAME || process.env['MONGO_DB_NAME'] || 'test';
+    this.DB_NAME =
+      data?.DB_NAME || process.env['MONGODB_DB_NAME'] || 'einvoice';
 
     this.POOL_SIZE =
       data?.POOL_SIZE || process.env['MONGO_POOL_SIZE']

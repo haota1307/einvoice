@@ -2,8 +2,12 @@ import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 
 export const RequestParam = createParamDecorator(
   (param: string, ctx: ExecutionContext) => {
-    const request = ctx.switchToHttp().getRequest();
+    const payload = ctx.switchToRpc().getData();
 
-    return param ? request[param] : request.data[param];
+    if (param) {
+      return payload?.[param];
+    }
+
+    return payload?.data ?? payload;
   },
 );

@@ -5,7 +5,7 @@ import { getProcessId } from '@common/utils/string.until';
 
 export const ProcessId = createParamDecorator(
   (data: unknown, ctx: ExecutionContext) => {
-    const request = ctx.switchToHttp().getRequest();
-    return request[Metadata.PROCESS_ID] || getProcessId();
+    const payload = ctx.switchToRpc().getData();
+    return payload?.[Metadata.PROCESS_ID] || getProcessId();
   },
 );

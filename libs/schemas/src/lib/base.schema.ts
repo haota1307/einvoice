@@ -5,7 +5,11 @@ import { Prop, SchemaFactory, Virtual } from '@nestjs/mongoose';
 export class BaseSchema {
   _id: ObjectId;
 
-  @Virtual({ get: (doc) => doc._id.toString() })
+  @Virtual({
+    get: function (this: BaseSchema) {
+      return this?._id?.toString();
+    },
+  })
   id: string;
 
   @Prop({ type: Date, default: new Date() })
@@ -15,7 +19,7 @@ export class BaseSchema {
   updatedAt: Date;
 }
 
-export const createSchema = <TClass = any>(
+export const createSchema = <TClass = unknown>(
   target: Type<TClass>,
 ): Schema<TClass> => {
   const schema = SchemaFactory.createForClass(target);

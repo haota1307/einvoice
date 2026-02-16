@@ -47,6 +47,9 @@ importers:
       mongoose:
         specifier: ^9.2.1
         version: 9.2.1
+      objectid:
+        specifier: ^3.2.1
+        version: 3.2.1
       reflect-metadata:
         specifier: ^0.1.13
         version: 0.1.14
@@ -2509,6 +2512,11 @@ packages:
   bser@2.1.1:
     resolution: {integrity: sha512-gQxTNE/GAfIIrmHLUE3oJyp5FO6HRBfhjnw4/wMmA63ZGDJnWBmgY/lyQBpnDUkGmAhbSe39tx2d/iTOAfglwQ==}
 
+  bson@0.1.9:
+    resolution: {integrity: sha512-HlvXnohuuxlb/AzILVZFgGBO7658NPddPn1Q8PRC6ANHoPZKJotU0WG9+PoMjO7ZFM/e+jKbqOstXJLyIhSOgA==}
+    engines: {node: '>=0.6.19'}
+    deprecated: Fixed a critical issue with BSON serialization documented in CVE-2019-2391, see https://bit.ly/2KcpXdo for more details
+
   bson@7.2.0:
     resolution: {integrity: sha512-YCEo7KjMlbNlyHhz7zAZNDpIpQbd+wOEHJYezv0nMYTn4x31eIUM2yomNNubclAt63dObUzKHWsBLJ9QcZNSnQ==}
     engines: {node: '>=20.19.0'}
@@ -4375,6 +4383,9 @@ packages:
   object-inspect@1.13.4:
     resolution: {integrity: sha512-W67iLl4J2EXEGTbfeHCffrjDfitvLANg0UlX3wFUUSTx92KXRFegMHUVgSqE+wvhAbi4WqjGg9czysTV2Epbew==}
     engines: {node: '>= 0.4'}
+
+  objectid@3.2.1:
+    resolution: {integrity: sha512-jt4OarkTk/N/oxUrPK/ZXm+t39sxtgxTnl8fs5IbeU80WchQi27E2zt/fu1FaWxbL+3sl980b/ELhXjcPlMf6g==}
 
   obuf@1.1.2:
     resolution: {integrity: sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==}
@@ -8786,6 +8797,8 @@ snapshots:
     dependencies:
       node-int64: 0.4.0
 
+  bson@0.1.9: {}
+
   bson@7.2.0: {}
 
   buffer-from@1.1.2: {}
@@ -10833,6 +10846,10 @@ snapshots:
   object-assign@4.1.1: {}
 
   object-inspect@1.13.4: {}
+
+  objectid@3.2.1:
+    dependencies:
+      bson: 0.1.9
 
   obuf@1.1.2: {}
 

@@ -2,7 +2,7 @@ import { MongoProvider } from '@common/configuration/mongo.config';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { InvoiceService } from './services/app.service';
+import { InvoiceService } from './services/invoice.service';
 import { InvoiceController } from './controllers/invoice.controller';
 import { InvoiceRepository } from './repositories/invoice.repositories';
 import { InvoiceDestination } from '@common/schemas/invoice.schema';
