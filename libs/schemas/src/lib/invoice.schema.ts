@@ -1,7 +1,7 @@
 import { Model } from 'mongoose';
 import { Prop, Schema } from '@nestjs/mongoose';
 
-import { BaseSchema, createSchema } from '@common/schemas/base.schema';
+import { BaseSchema, createSchema } from './base.schema';
 import { INVOICE_STATUS } from '@common/constants/enum/invoice.enum';
 
 export class Client {
