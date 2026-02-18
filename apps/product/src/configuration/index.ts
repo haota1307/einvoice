@@ -4,7 +4,7 @@ import { Type } from 'class-transformer';
 import { BaseConfiguration } from '@common/configuration/base.config';
 import { AppConfiguration } from '@common/configuration/app.config';
 import { TcpConfiguration } from '@common/configuration/tcp.config';
-import { MongoConfig } from '@common/configuration/mongo.config';
+import { TypeOrmConfiguration } from '@common/configuration/type-orm.config';
 
 class Configuration extends BaseConfiguration {
   @ValidateNested()
@@ -16,8 +16,8 @@ class Configuration extends BaseConfiguration {
   TCP_SERV = new TcpConfiguration();
 
   @ValidateNested()
-  @Type(() => MongoConfig)
-  MONGO_CONFIG = new MongoConfig();
+  @Type(() => TypeOrmConfiguration)
+  TYPEORM_CONFIG = new TypeOrmConfiguration();
 }
 
 export const CONFIGURATION = new Configuration();
