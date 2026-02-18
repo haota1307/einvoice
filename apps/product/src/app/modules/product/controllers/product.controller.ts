@@ -11,7 +11,7 @@ import { Response } from '@common/interfaces/tcp/common/response.interface';
 import { TcpLoggingInterceptor } from '@common/interceptors/tcp-logging.interceptor';
 import { TCP_REQUEST_MESSAGE } from '@common/constants/enum/tcp-request-message.enum';
 
-@Controller()
+@Controller('product')
 @UseInterceptors(TcpLoggingInterceptor)
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
