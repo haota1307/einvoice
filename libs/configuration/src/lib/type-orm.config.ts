@@ -2,6 +2,7 @@ import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { DatabaseType } from 'typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { Product } from '@common/entities/product.entity';
 
 export class TypeOrmConfiguration {
   @IsNotEmpty()
@@ -53,7 +54,7 @@ export const TypeOrmProviders = TypeOrmModule.forRootAsync({
       username: configService.get<string>('TYPEORM_CONFIG.USERNAME'),
       password: configService.get<string>('TYPEORM_CONFIG.PASSWORD'),
       database: configService.get<string>('TYPEORM_CONFIG.DATABASE'),
-      entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+      entities: [Product],
       synchronize: true,
       autoloadEntities: true,
     } as TypeOrmModuleOptions;

@@ -33,8 +33,8 @@ export class ProductRepository {
     await this.productRepository.delete(id);
   }
 
-  async existsBySku(sku: string): Promise<boolean> {
-    const result = await this.productRepository.count({ where: { sku } });
+  async existsBySku(sku: string, name: string): Promise<boolean> {
+    const result = await this.productRepository.count({ where: { sku, name } });
     return !!result;
   }
 }
