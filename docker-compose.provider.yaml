@@ -21,10 +21,10 @@ services:
     restart: unless-stopped
 
   postgres:
-    image: postgres:18
+    image: postgres:17
     container_name: postgres_server
     ports:
-      - 5433:5433
+      - 5432:5432
     networks:
       - einvoice-nw
     environment:
@@ -32,7 +32,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: einvoice_app
     volumes:
-      - ./docker/docker_data/postgres_data:/var/lib/postgresql
+      - ./docker/docker_data/postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
 
   pgAdmin:
