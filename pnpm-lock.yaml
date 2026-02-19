@@ -31,7 +31,7 @@ importers:
         version: 11.2.6(@nestjs/common@11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.1.14)(rxjs@7.8.2))(@nestjs/core@11.1.13)(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.1.14)
       '@nestjs/typeorm':
         specifier: ^11.0.0
-        version: 11.0.0(@nestjs/common@11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.1.14)(rxjs@7.8.2))(@nestjs/core@11.1.13)(reflect-metadata@0.1.14)(rxjs@7.8.2)(typeorm@0.3.28(babel-plugin-macros@3.1.0)(pg@8.18.0)(ts-node@10.9.1(@swc/core@1.15.11(@swc/helpers@0.5.18))(@types/node@20.19.9)(typescript@5.9.3)))
+        version: 11.0.0(@nestjs/common@11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.1.14)(rxjs@7.8.2))(@nestjs/core@11.1.13)(reflect-metadata@0.1.14)(rxjs@7.8.2)(typeorm@0.3.28(babel-plugin-macros@3.1.0)(mongodb@7.1.0)(pg@8.18.0)(ts-node@10.9.1(@swc/core@1.15.11(@swc/helpers@0.5.18))(@types/node@20.19.9)(typescript@5.9.3)))
       '@types/express':
         specifier: ^5.0.6
         version: 5.0.6
@@ -47,6 +47,9 @@ importers:
       express:
         specifier: ^5.2.1
         version: 5.2.1
+      mongodb:
+        specifier: ^7.1.0
+        version: 7.1.0
       mongoose:
         specifier: ^9.2.1
         version: 9.2.1
@@ -64,7 +67,7 @@ importers:
         version: 7.8.2
       typeorm:
         specifier: ^0.3.28
-        version: 0.3.28(babel-plugin-macros@3.1.0)(pg@8.18.0)(ts-node@10.9.1(@swc/core@1.15.11(@swc/helpers@0.5.18))(@types/node@20.19.9)(typescript@5.9.3))
+        version: 0.3.28(babel-plugin-macros@3.1.0)(mongodb@7.1.0)(pg@8.18.0)(ts-node@10.9.1(@swc/core@1.15.11(@swc/helpers@0.5.18))(@types/node@20.19.9)(typescript@5.9.3))
       uuid:
         specifier: ^13.0.0
         version: 13.0.0
@@ -4341,6 +4344,33 @@ packages:
       socks:
         optional: true
 
+  mongodb@7.1.0:
+    resolution: {integrity: sha512-kMfnKunbolQYwCIyrkxNJFB4Ypy91pYqua5NargS/f8ODNSJxT03ZU3n1JqL4mCzbSih8tvmMEMLpKTT7x5gCg==}
+    engines: {node: '>=20.19.0'}
+    peerDependencies:
+      '@aws-sdk/credential-providers': ^3.806.0
+      '@mongodb-js/zstd': ^7.0.0
+      gcp-metadata: ^7.0.1
+      kerberos: ^7.0.0
+      mongodb-client-encryption: '>=7.0.0 <7.1.0'
+      snappy: ^7.3.2
+      socks: ^2.8.6
+    peerDependenciesMeta:
+      '@aws-sdk/credential-providers':
+        optional: true
+      '@mongodb-js/zstd':
+        optional: true
+      gcp-metadata:
+        optional: true
+      kerberos:
+        optional: true
+      mongodb-client-encryption:
+        optional: true
+      snappy:
+        optional: true
+      socks:
+        optional: true
+
   mongoose@9.2.1:
     resolution: {integrity: sha512-fmNLwgct5km7iL1MqvTMncarR1E1TIw2lmc9A4UoDVdS7AQe95K+DnRK0qATkSUdwUC9V/5wlDcqnkQQjbSRkA==}
     engines: {node: '>=20.19.0'}
@@ -7569,13 +7599,13 @@ snapshots:
       '@nestjs/microservices': 11.1.13(@nestjs/common@11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.1.14)(rxjs@7.8.2))(@nestjs/core@11.1.13)(reflect-metadata@0.1.14)(rxjs@7.8.2)
       '@nestjs/platform-express': 11.1.13(@nestjs/common@11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.1.14)(rxjs@7.8.2))(@nestjs/core@11.1.13)
 
-  '@nestjs/typeorm@11.0.0(@nestjs/common@11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.1.14)(rxjs@7.8.2))(@nestjs/core@11.1.13)(reflect-metadata@0.1.14)(rxjs@7.8.2)(typeorm@0.3.28(babel-plugin-macros@3.1.0)(pg@8.18.0)(ts-node@10.9.1(@swc/core@1.15.11(@swc/helpers@0.5.18))(@types/node@20.19.9)(typescript@5.9.3)))':
+  '@nestjs/typeorm@11.0.0(@nestjs/common@11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.1.14)(rxjs@7.8.2))(@nestjs/core@11.1.13)(reflect-metadata@0.1.14)(rxjs@7.8.2)(typeorm@0.3.28(babel-plugin-macros@3.1.0)(mongodb@7.1.0)(pg@8.18.0)(ts-node@10.9.1(@swc/core@1.15.11(@swc/helpers@0.5.18))(@types/node@20.19.9)(typescript@5.9.3)))':
     dependencies:
       '@nestjs/common': 11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.1.14)(rxjs@7.8.2)
       '@nestjs/core': 11.1.13(@nestjs/common@11.1.13(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.1.14)(rxjs@7.8.2))(@nestjs/microservices@11.1.13)(@nestjs/platform-express@11.1.13)(reflect-metadata@0.1.14)(rxjs@7.8.2)
       reflect-metadata: 0.1.14
       rxjs: 7.8.2
-      typeorm: 0.3.28(babel-plugin-macros@3.1.0)(pg@8.18.0)(ts-node@10.9.1(@swc/core@1.15.11(@swc/helpers@0.5.18))(@types/node@20.19.9)(typescript@5.9.3))
+      typeorm: 0.3.28(babel-plugin-macros@3.1.0)(mongodb@7.1.0)(pg@8.18.0)(ts-node@10.9.1(@swc/core@1.15.11(@swc/helpers@0.5.18))(@types/node@20.19.9)(typescript@5.9.3))
 
   '@noble/hashes@1.4.0': {}
 
@@ -10963,6 +10993,12 @@ snapshots:
       bson: 7.2.0
       mongodb-connection-string-url: 7.0.1
 
+  mongodb@7.1.0:
+    dependencies:
+      '@mongodb-js/saslprep': 1.4.6
+      bson: 7.2.0
+      mongodb-connection-string-url: 7.0.1
+
   mongoose@9.2.1:
     dependencies:
       kareem: 3.2.0
@@ -12360,7 +12396,7 @@ snapshots:
 
   typedarray@0.0.6: {}
 
-  typeorm@0.3.28(babel-plugin-macros@3.1.0)(pg@8.18.0)(ts-node@10.9.1(@swc/core@1.15.11(@swc/helpers@0.5.18))(@types/node@20.19.9)(typescript@5.9.3)):
+  typeorm@0.3.28(babel-plugin-macros@3.1.0)(mongodb@7.1.0)(pg@8.18.0)(ts-node@10.9.1(@swc/core@1.15.11(@swc/helpers@0.5.18))(@types/node@20.19.9)(typescript@5.9.3)):
     dependencies:
       '@sqltools/formatter': 1.2.5
       ansis: 4.2.0
@@ -12378,6 +12414,7 @@ snapshots:
       uuid: 11.1.0
       yargs: 17.7.2
     optionalDependencies:
+      mongodb: 7.1.0
       pg: 8.18.0
       ts-node: 10.9.1(@swc/core@1.15.11(@swc/helpers@0.5.18))(@types/node@20.19.9)(typescript@5.9.3)
     transitivePeerDependencies:
