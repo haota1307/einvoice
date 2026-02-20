@@ -6,7 +6,7 @@ import {
   ProductTcpResponse,
 } from '@common/interfaces/tcp/product';
 import { ProductService } from '../services/product.service';
-import { RequestParam } from '@common/decorators/request-param.decorator';
+import { RequestParams } from '@common/decorators/request-param.decorator';
 import { Response } from '@common/interfaces/tcp/common/response.interface';
 import { TcpLoggingInterceptor } from '@common/interceptors/tcp-logging.interceptor';
 import { TCP_REQUEST_MESSAGE } from '@common/constants/enum/tcp-request-message.enum';
@@ -18,7 +18,7 @@ export class ProductController {
 
   @MessagePattern(TCP_REQUEST_MESSAGE.PRODUCT.CREATE)
   async create(
-    @RequestParam() params: CreateProductTcpRequest,
+    @RequestParams() params: CreateProductTcpRequest,
   ): Promise<Response<ProductTcpResponse>> {
     const result = await this.productService.create(params);
     return Response.success<ProductTcpResponse>(result);

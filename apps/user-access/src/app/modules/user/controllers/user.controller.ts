@@ -3,7 +3,7 @@ import { Controller, UseInterceptors } from '@nestjs/common';
 
 import { CreateUserTcpRequest } from '@common/interfaces/tcp/user';
 import { UserService } from '../services/user.service';
-import { RequestParam } from '@common/decorators/request-param.decorator';
+import { RequestParams } from '@common/decorators/request-param.decorator';
 import { Response } from '@common/interfaces/tcp/common/response.interface';
 import { TcpLoggingInterceptor } from '@common/interceptors/tcp-logging.interceptor';
 import { TCP_REQUEST_MESSAGE } from '@common/constants/enum/tcp-request-message.enum';
@@ -17,7 +17,7 @@ export class UserController {
 
   @MessagePattern(TCP_REQUEST_MESSAGE.USER.CREATE)
   async create(
-    @RequestParam() params: CreateUserTcpRequest,
+    @RequestParams() params: CreateUserTcpRequest,
     @ProcessId() processId: string,
   ): Promise<Response<string>> {
     await this.userService.create(params, processId);
