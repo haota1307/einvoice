@@ -9,7 +9,9 @@ import {
 import {
   CreateKeycloakUserRequest,
   ExchangeClientTokenResponse,
+  ExchangeUserTokenResponse,
 } from '@common/interfaces/common';
+import { LoginTcpRequest } from '@common/interfaces/tcp/authorizer';
 
 @Injectable()
 export class KeycloakHttpService {
@@ -94,5 +96,29 @@ export class KeycloakHttpService {
     this.logger.log(`Created user in Keycloak with ID: ${userId}`);
 
     return userId;
+  }
+
+  async exchangeUserToken(
+    params: LoginTcpRequest,
+  ): Promise<ExchangeUserTokenResponse> {
+    const body = new URLSearchParams();
+    body.append('client_id', this.clientId);
+    body.append('client_secret', this.clientSecret);
+    body.append('grant_type', 'password');
+    body.append('scope', 'openid');
+    body.append('username', params.username);
+    body.append('password', params.password);
+
+    const { data } = await this.axiosInstance.post<ExchangeUserTokenResponse>(
+      `/realms/${this.realm}/protocol/openid-connect/token`,
+      body,
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      },
+    );
+
+    return data;
   }
 }

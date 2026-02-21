@@ -7,11 +7,12 @@ import {
 import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 
-import { CONFIGURATION, TConfiguration } from '../configuration';
 import { UserModule } from './modules/user/user.module';
 import { ProductModule } from './modules/product/product.module';
 import { InvoiceModule } from './modules/invoice/invoice.module';
+import { CONFIGURATION, TConfiguration } from '../configuration';
 import { LoggerMiddleware } from '@common/middlewares/logger.middleware';
+import { AuthorizerModule } from './modules/authorizer/authorizer.module';
 import { ExceptionInterceptor } from '@common/interceptors/exception.interceptor';
 
 @Module({
@@ -20,6 +21,7 @@ import { ExceptionInterceptor } from '@common/interceptors/exception.interceptor
     InvoiceModule,
     ProductModule,
     UserModule,
+    AuthorizerModule,
   ],
   controllers: [],
   providers: [{ provide: APP_INTERCEPTOR, useClass: ExceptionInterceptor }],

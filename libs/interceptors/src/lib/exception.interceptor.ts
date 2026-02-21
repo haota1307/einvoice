@@ -1,4 +1,11 @@
-import { CallHandler, ExecutionContext, HttpException, HttpStatus, Logger, NestInterceptor } from '@nestjs/common';
+import {
+  CallHandler,
+  ExecutionContext,
+  HttpException,
+  HttpStatus,
+  Logger,
+  NestInterceptor,
+} from '@nestjs/common';
 import { catchError, map, Observable } from 'rxjs';
 import { Request } from 'express';
 import { Metadata } from '@common/constants/common.constants';
@@ -8,10 +15,15 @@ import { HTTP_MESSAGE } from '@common/constants/enum/http-message.enum';
 export class ExceptionInterceptor implements NestInterceptor {
   private readonly logger = new Logger(ExceptionInterceptor.name);
 
-  intercept(context: ExecutionContext, next: CallHandler<any>): Observable<any> | Promise<Observable<any>> {
+  intercept(
+    context: ExecutionContext,
+    next: CallHandler<any>,
+  ): Observable<any> | Promise<Observable<any>> {
     const ctx = context.switchToHttp();
-    const request: Request & { [Metadata.PROCESS_ID]: string; [Metadata.START_TIME]: number } =
-      ctx.getRequest();
+    const request: Request & {
+      [Metadata.PROCESS_ID]: string;
+      [Metadata.START_TIME]: number;
+    } = ctx.getRequest();
 
     const processId = request[Metadata.PROCESS_ID];
     const startTime = request[Metadata.START_TIME];
@@ -29,8 +41,16 @@ export class ExceptionInterceptor implements NestInterceptor {
 
         const durationMs = Date.now() - startTime;
 
-        const message = error?.response?.message || error?.message || error || HTTP_MESSAGE.INTERNAL_SERVER_ERROR;
-        const code = error?.code || error?.statusCode || error?.response?.statusCode || HttpStatus.INTERNAL_SERVER_ERROR;
+        const message =
+          error?.response?.message ||
+          error?.message ||
+          error ||
+          HTTP_MESSAGE.INTERNAL_SERVER_ERROR;
+        const code =
+          error?.code ||
+          error?.statusCode ||
+          error?.response?.statusCode ||
+          HttpStatus.INTERNAL_SERVER_ERROR;
 
         throw new HttpException(
           new ResponseDto({
@@ -38,7 +58,7 @@ export class ExceptionInterceptor implements NestInterceptor {
             message,
             statusCode: code,
             duration: `${durationMs} ms`,
-            processId
+            processId,
           }),
           code,
         );
