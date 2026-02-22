@@ -5,8 +5,9 @@ import {
   RequestMethod,
 } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 
+import { UserGuard } from '@common/guards/user.guard';
 import { UserModule } from './modules/user/user.module';
 import { ProductModule } from './modules/product/product.module';
 import { InvoiceModule } from './modules/invoice/invoice.module';
@@ -24,7 +25,10 @@ import { ExceptionInterceptor } from '@common/interceptors/exception.interceptor
     AuthorizerModule,
   ],
   controllers: [],
-  providers: [{ provide: APP_INTERCEPTOR, useClass: ExceptionInterceptor }],
+  providers: [
+    { provide: APP_INTERCEPTOR, useClass: ExceptionInterceptor },
+    { provide: APP_GUARD, useClass: UserGuard },
+  ],
 })
 export class AppModule implements NestModule {
   static CONFIGURATION: TConfiguration = CONFIGURATION;
