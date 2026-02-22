@@ -16,6 +16,8 @@ import { TcpClient } from '@common/interfaces/tcp/common/tcp-client.interface';
 import { TCP_REQUEST_MESSAGE } from '@common/constants/enum/tcp-request-message.enum';
 import { ProcessId } from '@common/decorators/process-id.decorator';
 import { Authorization } from '@common/decorators/authorizer.decorator';
+import { UserData } from '@common/decorators/user-data.decorator';
+import { AuthorizedMetadata } from '@common/interfaces/tcp/authorizer';
 
 @ApiTags('Invoice')
 @Controller('invoice')
@@ -32,6 +34,7 @@ export class InvoiceController {
   create(
     @Body() body: CreateInvoiceRequestDto,
     @ProcessId() processId: string,
+    @UserData() userData: AuthorizedMetadata,
   ) {
     return this.invoiceClient
       .send<InvoiceTcpResponse, CreateInvoiceTcpRequest>(

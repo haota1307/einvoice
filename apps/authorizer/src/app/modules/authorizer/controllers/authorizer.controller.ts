@@ -7,6 +7,7 @@ import {
   LoginTcpRequest,
   LoginTcpResponse,
 } from '@common/interfaces/tcp/authorizer';
+import { ProcessId } from '@common/decorators/process-id.decorator';
 import { RequestParams } from '@common/decorators/request-param.decorator';
 import { Response } from '@common/interfaces/tcp/common/response.interface';
 import { TCP_REQUEST_MESSAGE } from '@common/constants/enum/tcp-request-message.enum';
@@ -23,8 +24,14 @@ export class AuthorizerController {
   }
 
   @MessagePattern(TCP_REQUEST_MESSAGE.AUTHORIZER.VERIFY_USER_TOKEN)
-  async verifyUserToken(@RequestParams() token: string) {
-    const result = await this.authorizerService.verifyUserToken(token);
+  async verifyUserToken(
+    @RequestParams() token: string,
+    @ProcessId() processId: string,
+  ) {
+    const result = await this.authorizerService.verifyUserToken(
+      token,
+      processId,
+    );
     return Response.success<AuthorizeResponse>(result);
   }
 }
