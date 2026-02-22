@@ -1,3 +1,4 @@
+import { map } from 'rxjs';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Body, Controller, Inject, Post } from '@nestjs/common';
 
@@ -14,7 +15,7 @@ import { ResponseDto } from '@common/interfaces/gateway/response.interface';
 import { TcpClient } from '@common/interfaces/tcp/common/tcp-client.interface';
 import { TCP_REQUEST_MESSAGE } from '@common/constants/enum/tcp-request-message.enum';
 import { ProcessId } from '@common/decorators/process-id.decorator';
-import { map } from 'rxjs';
+import { Authorization } from '@common/decorators/authorizer.decorator';
 
 @ApiTags('Invoice')
 @Controller('invoice')
@@ -27,6 +28,7 @@ export class InvoiceController {
   @Post()
   @ApiOkResponse({ type: ResponseDto<InvoiceResponseDto> })
   @ApiOperation({ summary: 'Create a new invoice' })
+  @Authorization({ secured: true })
   create(
     @Body() body: CreateInvoiceRequestDto,
     @ProcessId() processId: string,

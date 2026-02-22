@@ -3,6 +3,7 @@ import { Controller } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { AuthorizerService } from '../services/authorizer.service';
 import {
+  AuthorizeResponse,
   LoginTcpRequest,
   LoginTcpResponse,
 } from '@common/interfaces/tcp/authorizer';
@@ -19,5 +20,11 @@ export class AuthorizerController {
     const result = await this.authorizerService.login(body);
 
     return Response.success<LoginTcpResponse>(result);
+  }
+
+  @MessagePattern(TCP_REQUEST_MESSAGE.AUTHORIZER.VERIFY_USER_TOKEN)
+  async verifyUserToken(@RequestParams() token: string) {
+    const result = await this.authorizerService.verifyUserToken(token);
+    return Response.success<AuthorizeResponse>(result);
   }
 }

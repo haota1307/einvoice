@@ -15,6 +15,8 @@ import { CONFIGURATION, TConfiguration } from '../configuration';
 import { LoggerMiddleware } from '@common/middlewares/logger.middleware';
 import { AuthorizerModule } from './modules/authorizer/authorizer.module';
 import { ExceptionInterceptor } from '@common/interceptors/exception.interceptor';
+import { ClientsModule } from '@nestjs/microservices';
+import { TCP_SERVICES, TcpProvider } from '@common/configuration/tcp.config';
 
 @Module({
   imports: [
@@ -23,6 +25,7 @@ import { ExceptionInterceptor } from '@common/interceptors/exception.interceptor
     ProductModule,
     UserModule,
     AuthorizerModule,
+    ClientsModule.registerAsync([TcpProvider(TCP_SERVICES.AUTHORIZER_SERVICE)]),
   ],
   controllers: [],
   providers: [
