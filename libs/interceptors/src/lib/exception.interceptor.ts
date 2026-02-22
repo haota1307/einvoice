@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 import { catchError, map, Observable } from 'rxjs';
 import { Request } from 'express';
-import { Metadata } from '@common/constants/common.constants';
+import { MetadataKeys } from '@common/constants/common.constants';
 import { ResponseDto } from '@common/interfaces/gateway/response.interface';
 import { HTTP_MESSAGE } from '@common/constants/enum/http-message.enum';
 
@@ -21,12 +21,12 @@ export class ExceptionInterceptor implements NestInterceptor {
   ): Observable<any> | Promise<Observable<any>> {
     const ctx = context.switchToHttp();
     const request: Request & {
-      [Metadata.PROCESS_ID]: string;
-      [Metadata.START_TIME]: number;
+      [MetadataKeys.PROCESS_ID]: string;
+      [MetadataKeys.START_TIME]: number;
     } = ctx.getRequest();
 
-    const processId = request[Metadata.PROCESS_ID];
-    const startTime = request[Metadata.START_TIME];
+    const processId = request[MetadataKeys.PROCESS_ID];
+    const startTime = request[MetadataKeys.START_TIME];
 
     return next.handle().pipe(
       map((data: ResponseDto<unknown>) => {

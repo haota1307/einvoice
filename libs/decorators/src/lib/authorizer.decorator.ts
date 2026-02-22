@@ -1,9 +1,9 @@
-import { Metadata } from '@common/constants/common.constants';
+import { MetadataKeys } from '@common/constants/common.constants';
 import { applyDecorators, SetMetadata } from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
 
 export const Authorization = ({ secured = false }: { secured?: boolean }) => {
-  const setMetadata = SetMetadata(Metadata.SECURED, {
+  const setMetadata = SetMetadata(MetadataKeys.SECURED, {
     secured: true,
   });
 

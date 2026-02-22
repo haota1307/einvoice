@@ -1,4 +1,4 @@
-import { Metadata } from '@common/constants/common.constants';
+import { MetadataKeys } from '@common/constants/common.constants';
 import {
   createParamDecorator,
   ExecutionContext,
@@ -10,12 +10,12 @@ export const UserData = createParamDecorator(
   (_: unknown, ctx: ExecutionContext) => {
     const request = ctx.switchToHttp().getRequest();
 
-    const userData = request[Metadata.USER_DATA] as AuthorizeResponse;
+    const userData = request[MetadataKeys.USER_DATA] as AuthorizeResponse;
 
     if (!userData) {
       throw new UnauthorizedException('User data not found');
     }
 
-    return userData?.metadata;
+    return userData?.MetadataKeys;
   },
 );

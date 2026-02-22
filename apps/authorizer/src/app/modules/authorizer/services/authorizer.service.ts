@@ -76,7 +76,7 @@ export class AuthorizerService {
 
       return {
         valid: true,
-        metadata: {
+        MetadataKeys: {
           jwt: payload,
           permissions: (user.roles as unknown as Role[])
             .map((role) => role.permissions)

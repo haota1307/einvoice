@@ -1,5 +1,5 @@
 import { parseToken } from './string.until';
-import { Metadata } from '@common/constants/common.constants';
+import { MetadataKeys } from '@common/constants/common.constants';
 import { AuthorizeResponse } from '@common/interfaces/tcp/authorizer';
 
 export function getAccessToken(request: any, keepBearer = false): string {
@@ -10,5 +10,5 @@ export function getAccessToken(request: any, keepBearer = false): string {
 }
 
 export function setUserData(request: any, userData?: AuthorizeResponse): void {
-  request[Metadata.USER_DATA] = userData;
+  request[MetadataKeys.USER_DATA] = userData;
 }

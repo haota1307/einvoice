@@ -9,7 +9,7 @@ import {
 import { firstValueFrom, map, Observable } from 'rxjs';
 import { Reflector } from '@nestjs/core';
 
-import { Metadata } from '@common/constants/common.constants';
+import { MetadataKeys } from '@common/constants/common.constants';
 import { getAccessToken, setUserData } from '@common/utils/request.until';
 import { TCP_REQUEST_MESSAGE } from '@common/constants/enum/tcp-request-message.enum';
 import { TCP_SERVICES } from '@common/configuration/tcp.config';
@@ -30,7 +30,7 @@ export class UserGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const authOptions = this.reflector.get<{ secured: boolean }>(
-      Metadata.SECURED,
+      MetadataKeys.SECURED,
       context.getHandler(),
     );
 
@@ -46,7 +46,8 @@ export class UserGuard implements CanActivate {
   private async verifyToken(request: any): Promise<boolean> {
     try {
       const token = getAccessToken(request);
-      const processId = request[Metadata.PROCESS_ID] || 'unknown-process-id';
+      const processId =
+        request[MetadataKeys.PROCESS_ID] || 'unknown-process-id';
 
       const result = await this.verifyUserToken(token, processId);
 

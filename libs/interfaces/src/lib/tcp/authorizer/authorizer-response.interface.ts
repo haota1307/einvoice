@@ -19,7 +19,7 @@ export class AuthorizedMetadata {
 
 export class AuthorizeResponse {
   valid = false;
-  metadata = new AuthorizedMetadata();
+  MetadataKeys = new AuthorizedMetadata();
 
   constructor(payload?: Partial<AuthorizeResponse>) {
     Object.assign(this, payload);
