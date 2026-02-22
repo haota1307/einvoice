@@ -17,6 +17,7 @@ import { AuthorizerModule } from './modules/authorizer/authorizer.module';
 import { ExceptionInterceptor } from '@common/interceptors/exception.interceptor';
 import { ClientsModule } from '@nestjs/microservices';
 import { TCP_SERVICES, TcpProvider } from '@common/configuration/tcp.config';
+import { PermissionGuard } from '@common/guards/permissions.guard';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { TCP_SERVICES, TcpProvider } from '@common/configuration/tcp.config';
   providers: [
     { provide: APP_INTERCEPTOR, useClass: ExceptionInterceptor },
     { provide: APP_GUARD, useClass: UserGuard },
+    { provide: APP_GUARD, useClass: PermissionGuard },
   ],
 })
 export class AppModule implements NestModule {

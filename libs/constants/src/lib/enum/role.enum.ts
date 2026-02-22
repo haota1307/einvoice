@@ -4,7 +4,6 @@ export enum ROLE {
 }
 
 export enum PERMISSION {
-  /* INVOICE */
   INVOICE_CREATE = 'invoice.create',
   INVOICE_GET_BY_ID = 'invoice.get_by_id',
   INVOICE_GET_ALL = 'invoice.get_all',

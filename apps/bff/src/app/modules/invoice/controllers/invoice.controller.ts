@@ -18,6 +18,8 @@ import { ProcessId } from '@common/decorators/process-id.decorator';
 import { Authorization } from '@common/decorators/authorizer.decorator';
 import { UserData } from '@common/decorators/user-data.decorator';
 import { AuthorizedMetadata } from '@common/interfaces/tcp/authorizer';
+import { PERMISSION } from '@common/constants/enum/role.enum';
+import { Permissions } from '@common/decorators/permission.decorator';
 
 @ApiTags('Invoice')
 @Controller('invoice')
@@ -31,6 +33,7 @@ export class InvoiceController {
   @ApiOkResponse({ type: ResponseDto<InvoiceResponseDto> })
   @ApiOperation({ summary: 'Create a new invoice' })
   @Authorization({ secured: true })
+  @Permissions([PERMISSION.INVOICE_CREATE])
   create(
     @Body() body: CreateInvoiceRequestDto,
     @ProcessId() processId: string,

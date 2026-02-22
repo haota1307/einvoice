@@ -28,7 +28,8 @@ async function bootstrap() {
       .setDescription('The Einvoice BFF Service API description')
       .setVersion('1.0.0')
       .addBearerAuth({
-        description: 'Default JWT Authorization',
+        description:
+          'Default JWT Authorization (paste token with or without "Bearer" prefix)',
         type: 'http',
         in: 'header',
         scheme: 'bearer',
