@@ -65,3 +65,15 @@ services:
       - ./docker/docker_data/keycloak_data:/opt/keycloak/data
     networks:
       - einvoice-nw
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis_server
+    ports:
+      - 6379:6379
+    networks:
+      - einvoice-nw
+    volumes:
+      - ./docker/docker_data/redis_data:/data
+    command: redis-server --save 60 1 --loglevel warning
+    restart: unless-stopped
